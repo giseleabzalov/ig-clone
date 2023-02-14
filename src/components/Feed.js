@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { ScrollView, StyleSheet, Text } from 'react-native';
 import Posts from './Posts'
 
-export default function Feed() {
+export default function Feed({ navigation }) {
     const [posts, setPosts] = useState();
     useEffect(() => {
         fetch('https://express-ts-c8.web.app/photos')
@@ -16,7 +16,7 @@ export default function Feed() {
             {!posts
             ? <Text>Loading...</Text>
             : posts.map(post => (
-                <Posts key={post.photoId} post={post} />
+                <Posts key={post.photoId} post={post} navigation={navigation} />
             ))
             }
         </ScrollView>
@@ -24,9 +24,9 @@ export default function Feed() {
 }
 
 const styles = StyleSheet.create({
-    feeds: {
+    feed: {
         backgroundColor: '#e0e0e0',
-        marginTop: 40,
+        // marginTop: 40,
         width: '100%',
     }
 })
